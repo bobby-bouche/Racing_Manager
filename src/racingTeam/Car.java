@@ -21,9 +21,29 @@ public class Car {
 	public Car(int carID, int topSpeed, String stringModel) {
 		
 		super();
-		this.carID    = carID;
+		validateCarID(carID);
+		this.carID = carID;
+		validateTopSpeed(topSpeed);
 		this.topSpeed = topSpeed;
-		this.model    = CarModelType.fromString(stringModel);
+		this.model = CarModelType.fromString(stringModel);
+	}
+	
+	
+	//validation method
+	private static void validateCarID(int value) {
+		if(value < 1000 || value > 9999) {
+			throw new IllegalArgumentException("Thats illegal feen");
+		}
+	}
+	
+	private static void validateTopSpeed(int value) {
+		if(value < 0 || value > 5000) {
+			throw new IllegalArgumentException("Thats illegal feen");
+		}
+	}
+	
+	private static void validateModelType(String value) {
+		
 	}
 
 	

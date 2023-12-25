@@ -1,6 +1,7 @@
 package testCases;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -35,7 +36,7 @@ class CarTest {
 	
 
 	/*
-	 * this method test for valid car constructor initialization
+	 * testing for valid car constructor initialization
 	 */
 	@Test
 	void testInitialization() {
@@ -56,7 +57,7 @@ class CarTest {
 	
 	
 	/*
-	 * this method tests for valid setCarID input
+	 * testing for valid setCarID input
 	 */
 	@Test
 	void testSetCarID() {
@@ -74,7 +75,7 @@ class CarTest {
 	
 	
 	/*
-	 * this method tests for valid setTopSpeed input
+	 * testing for valid setTopSpeed input
 	 */
 	@Test
 	void testTopSpeed() {
@@ -92,7 +93,7 @@ class CarTest {
 	
 	
 	/*
-	 * this method tests for valid change in car model type
+	 * testing for valid change in car model type
 	 */
 	@Test
 	void testModelType() {
@@ -107,6 +108,29 @@ class CarTest {
 		//Assert
 		assertEquals(CarModelType.TGI_III, car.getModel());
 	}
+	
+	
+	/*
+	 * testing for input handling
+	 */
+	@Test
+	void testInvalidInputConstructor() {
+		
+		//Assert
+		assertThrows(IllegalArgumentException.class, () -> new Car(101, 165, "munya"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(10000, 165, "munya"));
+		
+		assertThrows(IllegalArgumentException.class, () -> new Car(1001, -1, "munya"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
+		
+		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
+		
+//		Car car = new Car(1001, 165, "rtx_v");
+//		assertThrows(IllegalArgumentException.class, () -> car.setModel("Munya"));
+	}
+	
+	
 	
 
 	
