@@ -25,25 +25,31 @@ public class Car {
 		this.carID = carID;
 		validateTopSpeed(topSpeed);
 		this.topSpeed = topSpeed;
+		validateModelType(stringModel);
 		this.model = CarModelType.fromString(stringModel);
 	}
 	
 	
-	//validation method
+	//validation methods
 	private static void validateCarID(int value) {
 		if(value < 1000 || value > 9999) {
-			throw new IllegalArgumentException("Thats illegal feen");
+			throw new IllegalArgumentException("Thats illegal in carID class feen");
 		}
 	}
 	
 	private static void validateTopSpeed(int value) {
 		if(value < 0 || value > 5000) {
-			throw new IllegalArgumentException("Thats illegal feen");
+			throw new IllegalArgumentException("Thats illegal in carSpeed class feen");
 		}
 	}
 	
 	private static void validateModelType(String value) {
-		
+		if(value == null || value.isEmpty()) {
+			throw new IllegalArgumentException("Thats illegal in carModel 1 class feen");
+		}
+		else if(CarModelType.fromString(value) == CarModelType.GTI_II) {
+			throw new IllegalArgumentException("Thats illegal in carModel 2 class feen");
+		}
 	}
 
 	
@@ -53,6 +59,7 @@ public class Car {
 	}
 
 	public void setCarID(int carID) {
+		validateCarID(carID);
 		this.carID = carID;
 	}
 
@@ -61,6 +68,7 @@ public class Car {
 	}
 
 	public void setModel(String string) {
+		validateModelType(string);
 		this.model = CarModelType.fromString(string);;
 	}
 
@@ -69,6 +77,7 @@ public class Car {
 	}
 
 	public void setTopSpeed(int topSpeed) {
+		validateTopSpeed(topSpeed);
 		this.topSpeed = topSpeed;
 	}
 	

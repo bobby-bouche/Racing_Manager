@@ -29,9 +29,9 @@ public enum CarModelType {
 				return model;
 			}
 		}
+		// default
 		return CarModelType.GTI_II;
 	}
-	
-	
+		
 	
 }

@@ -45,10 +45,8 @@ class CarTest {
 		int expectedID = 1001;
 		int expectedTopSpeed = 165;
 		String expectedModel = "rtx_v";
-		
 		//Act
 		Car car = new Car(expectedID,expectedTopSpeed,expectedModel);
-		
 		//Assert
 		assertEquals(expectedID, car.getCarID());
 		assertEquals(expectedTopSpeed, car.getTopSpeed());
@@ -63,12 +61,10 @@ class CarTest {
 	void testSetCarID() {
 		
 		//Arrange
-		int expectedCarID = 5;
+		int expectedCarID = 1005;
 		Car car = new Car(1001, 165, "rtx_v");
-		
 		//Act
 		car.setCarID(expectedCarID);
-		
 		//Assert
 		assertEquals(expectedCarID, car.getCarID());
 	}
@@ -78,15 +74,13 @@ class CarTest {
 	 * testing for valid setTopSpeed input
 	 */
 	@Test
-	void testTopSpeed() {
+	void testSetTopSpeed() {
 		
 		//Arrange
 		int expectedTopSpeed = 200;
 		Car car = new Car(1001, 165, "rtx_v");
-		
 		//Act
 		car.setTopSpeed(expectedTopSpeed);
-		
 		//Assert
 		assertEquals(expectedTopSpeed, car.getTopSpeed());
 	}
@@ -96,15 +90,13 @@ class CarTest {
 	 * testing for valid change in car model type
 	 */
 	@Test
-	void testModelType() {
+	void testSetModelType() {
 		
 		//Arrange
 		String expectedModel = "tgi_iii";
-		Car car = new Car(1001, 165, "rtx_v");
-		
+		Car car = new Car(1001, 165, "rtx_v");	
 		//Act
-		car.setModel(expectedModel);
-		
+		car.setModel(expectedModel);	
 		//Assert
 		assertEquals(CarModelType.TGI_III, car.getModel());
 	}
@@ -117,21 +109,87 @@ class CarTest {
 	void testInvalidInputConstructor() {
 		
 		//Assert
-		assertThrows(IllegalArgumentException.class, () -> new Car(101, 165, "munya"));
-		assertThrows(IllegalArgumentException.class, () -> new Car(10000, 165, "munya"));
-		
-		assertThrows(IllegalArgumentException.class, () -> new Car(1001, -1, "munya"));
-		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
-		
-		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
-		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "munya"));
-		
-//		Car car = new Car(1001, 165, "rtx_v");
-//		assertThrows(IllegalArgumentException.class, () -> car.setModel("Munya"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(101, 165, "tgi_iii"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(10000, 165, "tgi_iii"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(1001, -1, "tgi_iii"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 5001, "tgi_iii"));
+		assertThrows(IllegalArgumentException.class, () -> new Car(1002, 401, "munya"));
 	}
 	
 	
-	
+	@Test
+	/*
+	 * testing for multiple state changes
+	 */
+	void testMultipleStateChanges() {
+		
+		Car car = new Car(1001, 165, "rtx_v");
+		car.setCarID(2001);
+		assertEquals(2001, car.getCarID());
+		car.setTopSpeed(300);
+		assertEquals(300, car.getTopSpeed());
+	}
 
+	
+	@Test
+	/*
+	 * testing for consistency
+	 */
+	void testConsistency() {
+		
+		Car car = new Car(1001, 165, "rtx_v");
+		car.setTopSpeed(200);
+		assertEquals(CarModelType.RTX_V, car.getModel());
+	}
+
+	
+	@Test
+	/*
+	 * testing for invalid Enum value
+	 */
+	void testInvalidEnumValue() {
+		
+		Car car = new Car(1001, 165, "rtx_v"); 
+		assertThrows(IllegalArgumentException.class, () -> car.setModel("Munya"));
+	}
+	
+	@Test
+	/*
+	 * testing for invalid carID state change
+	 */
+	void testInvalidCarIDChange() {
+		
+		Car car = new Car(1001, 165, "rtx_v"); 
+		assertThrows(IllegalArgumentException.class, () -> car.setCarID(999));
+		assertThrows(IllegalArgumentException.class, () -> car.setCarID(10000000));
+	}
+	
+	
+	/*
+	 * testing for invalid top speed state change
+	 */
+	@Test
+	void testInvalidTopSpeedChange() {
+		
+		Car car = new Car(1001, 165, "rtx_v"); 
+		assertThrows(IllegalArgumentException.class, () -> car.setTopSpeed(5001));
+		assertThrows(IllegalArgumentException.class, () -> car.setTopSpeed(-1));
+	}
+	
+	
+	/*
+	 * testing for invalid model type state change
+	 */
+	@Test
+	void testInvalidCarModelTypeChange() {
+		
+		Car car = new Car(1001, 165, "rtx_v");
+		assertThrows(IllegalArgumentException.class, () -> car.setModel("Munya"));
+		assertThrows(IllegalArgumentException.class, () -> car.setModel(" "));
+		assertThrows(IllegalArgumentException.class, () -> car.setModel(null));
+		assertThrows(IllegalArgumentException.class, () -> car.setModel("1002"));
+		assertThrows(IllegalArgumentException.class, () -> car.setModel("its_2"));
+		assertThrows(IllegalArgumentException.class, () -> car.setModel("rtx_iv"));
+	}
 	
 }
