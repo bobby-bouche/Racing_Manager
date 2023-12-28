@@ -16,7 +16,7 @@ public class CarConcurrencyTest {
 	private static final int CAR_ID_START = 1001;
 	
 	@Test
-	void testConcurrentSetCarID() throws InterruptedException {
+	public void testConcurrentSetCarID() throws InterruptedException {
 		
 		//Arrange
 		Car car = new Car(1000, 200, "rtx_v");

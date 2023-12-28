@@ -1,16 +1,19 @@
 package racingTeam;
 
+import testCases.CarConcurrencyTest;
 
 public class Main {
 
 	public static void main(String[] args) {
+	
 		
-
-		Car car = new Car();
-		
-		car.setModel("GTI_IIdg");
-		
-		System.out.println(car.getModel());
+		CarConcurrencyTest test = new CarConcurrencyTest();
+		try {
+			test.testConcurrentSetCarID();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
