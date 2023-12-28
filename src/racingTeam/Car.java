@@ -1,11 +1,16 @@
 package racingTeam;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /*
  * 
  * this class creates a Car object by taking in user input, validating it, and assigning data
  * to Car attributes.
  */
-public class Car {
+public class Car implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	// car fields
 	private int carID;
@@ -89,4 +94,18 @@ public class Car {
 	}
 	
 	
+	/*
+	 * this method overrides the equals method to to resolve comparison failure
+	 * during serialization test process
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null || getClass() != obj.getClass()) return false;
+		Car otherCar = (Car) obj;
+		return this.carID == otherCar.carID 
+				&& this.topSpeed == otherCar.topSpeed 
+				&& Objects.equals(this.model,  otherCar.model);
+	}
+
 }

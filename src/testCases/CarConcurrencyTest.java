@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Test;
 
@@ -20,16 +21,15 @@ public class CarConcurrencyTest {
 		
 		//Arrange
 		Car car = new Car(1000, 200, "rtx_v");
+		AtomicInteger carIDCounter = new AtomicInteger(CAR_ID_START);
 		ExecutorService executorService = Executors.newFixedThreadPool(THREAD_COUNT);
 		
 		
 		//Act
 		for(int i = 0; i< THREAD_COUNT;i++) {
 			executorService.submit(() -> {
-				int nextCarID;
 				synchronized (CarConcurrencyTest.this) {
-					nextCarID = CAR_ID_START + car.getCarID();
-					car.setCarID(nextCarID);
+					car.setCarID(carIDCounter.getAndIncrement());
 				}
 			});
 		}
@@ -42,5 +42,6 @@ public class CarConcurrencyTest {
 		
 		//Verify
 		assertEquals(CAR_ID_START + THREAD_COUNT -1, car.getCarID());
+		System.out.println("Concurrency test successfull");
 	}
 }
