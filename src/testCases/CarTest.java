@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -228,7 +229,7 @@ class CarTest {
 	
 	
 	/*
-	 * testing serialization performace
+	 * testing serialization performance
 	 */
 	@Test
 	void testSerializationPerformance() {
@@ -263,6 +264,16 @@ class CarTest {
 		}
 		catch(IOException | ClassNotFoundException e) {
 			fail("Exception occurred during serialization/deserialiation process: " + e.getMessage());
+		}
+		
+		for(int i = 0; i< NUM_OBJECTS; i++) {
+			String fileName = FILE_NAME + i + ".ser";
+			File file = new File(fileName);
+			if(file.exists()) {
+				if(!file.delete()) {
+					System.out.println("Could not delete this file: " + fileName);
+				}
+			}
 		}
 		
 		long endTime = System.currentTimeMillis();
