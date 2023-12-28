@@ -1,7 +1,6 @@
 package testCases;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.fail;
 
@@ -266,6 +265,8 @@ class CarTest {
 			fail("Exception occurred during serialization/deserialiation process: " + e.getMessage());
 		}
 		
+		
+		// created files are deleted before program executes
 		for(int i = 0; i< NUM_OBJECTS; i++) {
 			String fileName = FILE_NAME + i + ".ser";
 			File file = new File(fileName);

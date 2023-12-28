@@ -33,6 +33,10 @@ class DriverTest {
 	}
 	
 	
+	
+	/*
+	 * testing for valid driver constructor initialization
+	 */
 	@Test
 	void testInitialization() {
 		
@@ -54,6 +58,79 @@ class DriverTest {
 	@Test
 	void testSetDriverID() {
 		
+		//Arrange
+		
+		//Act
+		
+		//Assert
+		
 	}
+	
+	
+	@Test
+	void testSetDriverName() {
+		
+	}
+	
+	
+	@Test
+	void testSetDriverExperienceLevel() {
+		
+	}
+	
+	
+	@Test
+	void testInvalidInputconstructor() {
+		
+	}
+	
+	
+	@Test
+	void testMultipleStateChanges() {
+		
+	}
+	
+	
+	@Test
+	void testConsistency() {
+		
+	}
+	
+	
+	@Test
+	void testInvalidEnumValue() {
+		// TODO create enum for experienceLEvel
+	}
+	
+	
+	@Test
+	void testInvalidDriverIDChange() {
+		
+	}
+	
+	
+	@Test
+	void testInvalidDriverNameChange() {
+		
+	}
+	
+	
+	@Test
+	void testInvalidDriverExperienceLevelChange() {
+		
+	}
+	
+	
+	@Test
+	void testEdgeCases() {
+		
+	}
+	
+	
+	@Test
+	void testSerializationPerformance() {
+		
+	}
+	
 
 }

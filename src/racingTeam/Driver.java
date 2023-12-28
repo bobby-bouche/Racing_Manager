@@ -1,5 +1,7 @@
 package racingTeam;
 
+// TODO validation methods, experience level enum set
+
 public class Driver {
 	
 	// driver fields
@@ -18,6 +20,21 @@ public class Driver {
 		this.driverID = driverID;
 		this.name = name;
 		this.experienceLevel = experienceLevel;
+	}
+	
+	
+	// validation methods
+	
+	private static void validateDriveID(int value) {
+		
+	}
+	
+	private static void validateName(String value) {
+		
+	}
+	
+	private static void validateExperienceLevel(int value) {
+		
 	}
 	
 	
