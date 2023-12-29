@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Keyboard {
 	
+	// keyboard fields
 	private Scanner input;
 	
-	
+	// constructor
 	public Keyboard() {
 		super();
 		input = new Scanner(System.in);
 	}
-	
 	
 	
 	/*
@@ -25,10 +25,8 @@ public class Keyboard {
 		boolean valid = false;
 		
 		while(valid == false) {
-			
 			System.out.println(promptMsg);
 			strInput = input.nextLine();
-			
 			try {
 				num = Integer.parseInt(strInput);
 				valid = true;
@@ -41,19 +39,18 @@ public class Keyboard {
 	}
 	
 	
+	/*
+	 * method to vallidate user input for string
+	 */
 	public String readString(String promptMsg,String errorMsg) {
 		
 		String strInput = null;
 		boolean valid = false;
 		
-		
 		while(valid == false) {
-			
 			System.out.println(promptMsg);
 			strInput = input.nextLine();
-			
 			try {
-				
 				if(!(strInput == null) && !strInput.isBlank()){
 					valid = true;
 				}
@@ -69,5 +66,4 @@ public class Keyboard {
 	}
 	
 	
-
 }

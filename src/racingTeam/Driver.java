@@ -1,40 +1,52 @@
 package racingTeam;
 
+import java.io.Serializable;
+
 // TODO validation methods, experience level enum set
 
-public class Driver {
+public class Driver implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	// driver fields
 	private int driverID;
 	private String name;
-	private int experienceLevel;
-	
+	private ExperienceLevel experienceLevel;
 	
 	// constructors
 	public Driver() {
 		super();
 	}
 	
-	public Driver(int driverID, String name, int experienceLevel) {
+	public Driver(int driverID, String name, String experienceLevel) {
 		
+		validateDriveID(driverID);
 		this.driverID = driverID;
+		validateName(name);
 		this.name = name;
-		this.experienceLevel = experienceLevel;
+		validateExperienceLevel(experienceLevel);
+		this.experienceLevel = ExperienceLevel.fromString(experienceLevel);
 	}
 	
 	
 	// validation methods
+	private static void validateDriveID(int inputID) {
+		if(inputID < 1000 || inputID > 1200) {
+			throw new IllegalArgumentException("Invalid driver id");
+		}
+	}
 	
-	private static void validateDriveID(int value) {
+	private static void validateName(String inputName) {
+		if(inputName.length() > 50) {
+			throw new IllegalArgumentException("Invalid name");
+		}
 		
 	}
 	
-	private static void validateName(String value) {
-		
-	}
-	
-	private static void validateExperienceLevel(int value) {
-		
+	private static void validateExperienceLevel(String inputLevel) {
+		if(inputLevel == null || inputLevel.isEmpty()) {
+			throw new IllegalArgumentException("Invalid experience level");
+		}
 	}
 	
 	
@@ -55,12 +67,12 @@ public class Driver {
 		this.name = name;
 	}
 
-	public int getExperienceLevel() {
+	public ExperienceLevel getExperienceLevel() {
 		return experienceLevel;
 	}
 
-	public void setExperienceLevel(int experienceLevel) {
-		this.experienceLevel = experienceLevel;
+	public void setExperienceLevel(String experienceLevel) {
+		this.experienceLevel = ExperienceLevel.fromString(experienceLevel);
 	}
 	
 

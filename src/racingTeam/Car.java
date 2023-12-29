@@ -37,7 +37,7 @@ public class Car implements Serializable {
 	
 	//validation methods
 	private static void validateCarID(int value) {
-		if(value < 1000 || value > 9999) {
+		if(value < 1 || value > 99) {
 			throw new IllegalArgumentException("Thats illegal in carID class feen");
 		}
 	}
@@ -51,9 +51,6 @@ public class Car implements Serializable {
 	private static void validateModelType(String value) {
 		if(value == null || value.isEmpty()) {
 			throw new IllegalArgumentException("Thats illegal in carModel 1 class feen");
-		}
-		else if(CarModelType.fromString(value) == CarModelType.GTI_II) {
-			throw new IllegalArgumentException("Thats illegal in carModel 2 class feen");
 		}
 	}
 

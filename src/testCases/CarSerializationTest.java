@@ -68,6 +68,9 @@ public class CarSerializationTest {
 		
 	}
 	
+	/*
+	 * 
+	 */
 	private void deleteSerializedFile() {
 		File file = new File(FILE_NAME);
 		if(file.exists()) {
@@ -77,6 +80,4 @@ public class CarSerializationTest {
 		}
 	}
 	
-	
-
 }

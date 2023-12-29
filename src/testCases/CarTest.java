@@ -266,7 +266,7 @@ class CarTest {
 		}
 		
 		
-		// created files are deleted before program executes
+		// created files are deleted before program ends
 		for(int i = 0; i< NUM_OBJECTS; i++) {
 			String fileName = FILE_NAME + i + ".ser";
 			File file = new File(fileName);
