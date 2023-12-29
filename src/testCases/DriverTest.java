@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import racingTeam.Driver;
+import racingTeam.ExperienceLevel;
 
 class DriverTest {
 
@@ -43,7 +44,7 @@ class DriverTest {
 		//Arrange
 		int expectedDriverID = 5;
 		String expectedName = "Larry";
-		int expectedExperienceLevel = 90;
+		String expectedExperienceLevel = "rookie";
 		
 		//Act
 		Driver d = new Driver(expectedDriverID,expectedName,expectedExperienceLevel);
@@ -51,7 +52,7 @@ class DriverTest {
 		//assert
 		assertEquals(expectedDriverID, d.getDriverID());
 		assertEquals(expectedName, d.getName());
-		assertEquals(expectedExperienceLevel, 90);
+		assertEquals(ExperienceLevel.ROOKIE, d.getExperienceLevel());
 	}
 	
 	

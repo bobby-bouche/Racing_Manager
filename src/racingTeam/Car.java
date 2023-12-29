@@ -3,11 +3,7 @@ package racingTeam;
 import java.io.Serializable;
 import java.util.Objects;
 
-/*
- * 
- * this class creates a Car object by taking in user input, validating it, and assigning data
- * to Car attributes.
- */
+
 public class Car implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

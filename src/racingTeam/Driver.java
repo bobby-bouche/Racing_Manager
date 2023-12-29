@@ -2,7 +2,6 @@ package racingTeam;
 
 import java.io.Serializable;
 
-// TODO validation methods, experience level enum set
 
 public class Driver implements Serializable{
 	
@@ -12,6 +11,7 @@ public class Driver implements Serializable{
 	private int driverID;
 	private String name;
 	private ExperienceLevel experienceLevel;
+	
 	
 	// constructors
 	public Driver() {
@@ -40,7 +40,6 @@ public class Driver implements Serializable{
 		if(inputName.length() > 50) {
 			throw new IllegalArgumentException("Invalid name");
 		}
-		
 	}
 	
 	private static void validateExperienceLevel(String inputLevel) {
@@ -56,6 +55,7 @@ public class Driver implements Serializable{
 	}
 
 	public void setDriverID(int driverID) {
+		validateDriveID(driverID);
 		this.driverID = driverID;
 	}
 
@@ -64,6 +64,7 @@ public class Driver implements Serializable{
 	}
 
 	public void setName(String name) {
+		validateName(name);
 		this.name = name;
 	}
 
@@ -72,6 +73,7 @@ public class Driver implements Serializable{
 	}
 
 	public void setExperienceLevel(String experienceLevel) {
+		validateExperienceLevel(experienceLevel);
 		this.experienceLevel = ExperienceLevel.fromString(experienceLevel);
 	}
 	
