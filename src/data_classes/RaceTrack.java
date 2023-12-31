@@ -1,6 +1,8 @@
-package racingTeam;
+package data_classes;
 
 import java.io.Serializable;
+
+import interfaces.Race;
 
 public class RaceTrack implements Race, Serializable {
 

@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import racingTeam.Driver;
-import racingTeam.ExperienceLevel;
+import data_classes.Driver;
+import enums.ExperienceLevel;
 
 class DriverTest {
 

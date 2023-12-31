@@ -1,7 +1,9 @@
-package racingTeam;
+package data_classes;
 
 import java.io.Serializable;
 import java.util.Objects;
+
+import enums.CarModelType;
 
 
 public class Car implements Serializable {

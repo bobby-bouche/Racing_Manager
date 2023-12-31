@@ -1,4 +1,4 @@
-package racingTeam;
+package inputValidation;
 
 import java.util.Scanner;
 

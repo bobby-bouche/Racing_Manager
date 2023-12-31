@@ -1,4 +1,4 @@
-package racingTeam;
+package enums;
 
 public enum CarModelType {
 	

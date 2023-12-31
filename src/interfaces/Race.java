@@ -1,4 +1,4 @@
-package racingTeam;
+package interfaces;
 
 public interface Race {
 	

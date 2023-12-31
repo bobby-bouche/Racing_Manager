@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import racingTeam.Car;
+import data_classes.Car;
 
 
 public class CarSerializationTest {

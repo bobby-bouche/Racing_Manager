@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.junit.Test;
 
-import racingTeam.Car;
+import data_classes.Car;
 
 public class CarConcurrencyTest {
 	

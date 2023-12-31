@@ -17,8 +17,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import racingTeam.Car;
-import racingTeam.CarModelType;
+import data_classes.Car;
+import enums.CarModelType;
 
 class CarTest {
 	
