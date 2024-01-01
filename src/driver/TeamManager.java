@@ -54,7 +54,7 @@ public class TeamManager implements Serializable {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/racing_manager_db", "root", "Ronaldo");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/racing_manager_db", "root", "ronaldo");
 			System.out.println("success");
 		}
 		catch(ClassNotFoundException | SQLException e) {
