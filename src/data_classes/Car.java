@@ -14,6 +14,17 @@ public class Car implements Serializable {
 	private int carID;
 	private int topSpeed;
 	private CarModelType model;
+	private int driverID;
+	
+	
+	// symbolic constants
+	private static int DEFAULT_DRIVER_ID = 0;
+	
+	
+	// initializer
+	{
+		driverID = DEFAULT_DRIVER_ID;
+	}
 	
 	
 	// constructors
@@ -21,15 +32,21 @@ public class Car implements Serializable {
 		super();
 	}
 	
-	public Car(int carID, int topSpeed, String stringModel) {
+	public Car(int carID, int topSpeed, String model) {
+		this(carID,topSpeed,model,DEFAULT_DRIVER_ID);
+	}
+	
+	public Car(int carID, int topSpeed, String model, int driverID) {
 		
 		super();
 		validateCarID(carID);
 		this.carID = carID;
 		validateTopSpeed(topSpeed);
 		this.topSpeed = topSpeed;
-		validateModelType(stringModel);
-		this.model = CarModelType.fromString(stringModel);
+		validateModelType(model);
+		this.model = CarModelType.fromString(model);
+		// TODO validation
+		this.driverID = driverID;
 	}
 	
 	
@@ -81,6 +98,32 @@ public class Car implements Serializable {
 		this.topSpeed = topSpeed;
 	}
 	
+	public int getDriverID() {
+		return driverID;
+	}
+
+	
+	// method to add driver to car
+	public void addDriver(int driverID) {
+		if(!(this.driverID == 0)) {
+			System.out.println("there is a driver already registered for this car");
+		}
+		else {
+			this.driverID = driverID;
+		}		
+	}
+	
+	// method to remove driver from car
+	public void removeDriver() {
+		if(this.driverID == 0) {
+			System.out.println("car has no registered driver");
+		}
+		else {
+			this.driverID = 0;
+			System.out.println("car is available for use");
+		}
+	}
+
 	
 	// toString method
 	@Override
@@ -90,7 +133,7 @@ public class Car implements Serializable {
 	
 	
 	/*
-	 * this method overrides the equals method to to resolve comparison failure
+	 * this method overrides the equals method to resolve comparison failure
 	 * during serialization test process
 	 */
 	@Override
@@ -103,4 +146,5 @@ public class Car implements Serializable {
 				&& Objects.equals(this.model,  otherCar.model);
 	}
 
+	
 }
