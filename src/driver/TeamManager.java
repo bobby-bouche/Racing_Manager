@@ -2,6 +2,7 @@ package driver;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,7 @@ public class TeamManager {
 	private static Map<Integer, Car> raceTeam;
 	
 	private Keyboard kb;
+	Connection connection;
 
 	
 	//constructor
@@ -87,7 +89,7 @@ public class TeamManager {
 	void retrieveData() {
 		try {
 			
-			Connection connection = connectDB();
+			connection = connectDB();
 			drivers  = retrieveDrivers(connection);
 			raceCars = retrieveCars(connection, drivers);
 			connection.close();
@@ -166,13 +168,48 @@ public class TeamManager {
 	// CRUD methods
 	
 	// method to read driver info
-//	public String readDriverInfo(int driverID) {
-//		
-//		Driver d = new Driver();
-//		Statement stmt = 
-//		
-//		return null;
-//	}
+	public String readDriverInfo(int driverID) throws SQLException {
+		
+		String driverInfo = "";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = connectDB();
+			ps = connection.prepareStatement("SELECT * FROM driver WHERE driverID = ?");
+			ps.setInt(1, driverID);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				String name = rs.getString("name");
+				String experienceLevel = rs.getString("experienceLevel");
+				
+				Driver driver = new Driver();
+				driver.setDriverID(driverID);
+				driver.setName(name);
+				driver.setExperienceLevel(experienceLevel);
+				
+				driverInfo = driver.toString();
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(ps != null) {
+				ps.close();
+			}
+			if(connection != null) {
+				connection.close();
+			}
+		}
+		
+		return driverInfo;	
+	}
 	 
 	// method to register new driver to driver and add to driver database
 	public void registerNewDriver() {
