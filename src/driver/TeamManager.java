@@ -1,6 +1,5 @@
 package driver;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,20 +14,16 @@ import data_classes.Car;
 import data_classes.Driver;
 import inputValidation.Keyboard;
 
-public class TeamManager implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class TeamManager {
 	
 	//teamManager fields
 	private static List<Driver> drivers;
 	private static List<Car> raceCars;
-	
 	// this is a neat feature to implement that will store currant race team
 	private static Map<Integer, Car> raceTeam;
 	
 	private Keyboard kb;
-	private Connection connection;
-	
+
 	
 	//constructor
 	public TeamManager() {
@@ -53,7 +48,7 @@ public class TeamManager implements Serializable {
 	
 	
 	//method to create database connection
-	public Connection connectDB() {
+	Connection connectDB() {
 		
 		Connection con = null;
 		
@@ -69,7 +64,11 @@ public class TeamManager implements Serializable {
 	}
 	
 	
-	// method to continuously refresh data lists every 5 seconds
+	/*
+	 *  method to continuously refresh data lists every 5 seconds
+	 *  to ensure an updates to the data remains synced between
+	 *  database and running program data.
+	 */
 	public void CDCListener() {
 		
 		while(true) {
@@ -83,24 +82,37 @@ public class TeamManager implements Serializable {
 		}
 	}
 	
+	
 	// method to connect to the database, retrieve all data, and populate static lists
 	void retrieveData() {
 		try {
-			connection = connectDB();
 			
-			drivers = retrieveDrivers(connection);
+			Connection connection = connectDB();
+			drivers  = retrieveDrivers(connection);
 			raceCars = retrieveCars(connection, drivers);
-			System.out.println("Yeow");
+			connection.close();
 			
-			for(Car car : raceCars) {
-				if(!(car.getDriverID() == 0)){
-					raceTeam.put(car.getDriverID(), car);
-				}
-			}
+			populateCurrentRaceTeam(raceTeam);
+			
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/*
+	 *  This method searches for raceCars currently being piloted by drivers and adds them
+	 *  to the current race team line-up.
+	 */
+	private static Map<Integer, Car> populateCurrentRaceTeam(Map<Integer, Car> TeamLineup){
+		
+		for(Car car : raceCars) {
+			if(!(car.getDriverID() == 0)){
+				TeamLineup.put(car.getDriverID(), car);
+			}
+		}
+		return TeamLineup;
 	}
 	
 	
@@ -154,10 +166,13 @@ public class TeamManager implements Serializable {
 	// CRUD methods
 	
 	// method to read driver info
-	public String readDriverInfo(int driverID) {
-		
-		return null;
-	}
+//	public String readDriverInfo(int driverID) {
+//		
+//		Driver d = new Driver();
+//		Statement stmt = 
+//		
+//		return null;
+//	}
 	 
 	// method to register new driver to driver and add to driver database
 	public void registerNewDriver() {

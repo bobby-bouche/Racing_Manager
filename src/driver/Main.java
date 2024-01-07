@@ -8,14 +8,14 @@ public class Main {
 	public static void main(String[] args) {
 	
 	
-		TeamManager man = new TeamManager();
+		TeamManager Manager = new TeamManager();
 		//test
-		man.connectDB();
-		man.retrieveData();
+		//man.connectDB();
+		Manager.retrieveData();
 		
-		System.out.println(man.getDrivers());
-		System.out.println(man.getRaceCars());
-		System.out.println(man.getRaceTeam());
+		System.out.println(Manager.getDrivers());
+		System.out.println(Manager.getRaceCars());
+		System.out.println(Manager.getRaceTeam());
 		
 //		Driver d = new Driver(1001, "newman", "ROOKIE");
 //		
