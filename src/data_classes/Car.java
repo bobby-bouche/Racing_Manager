@@ -101,6 +101,10 @@ public class Car implements Serializable {
 	public int getDriverID() {
 		return driverID;
 	}
+	
+	public void setDriverID(int driverID) {
+		this.driverID = driverID;
+	}
 
 	
 	// method to add driver to car
@@ -128,7 +132,7 @@ public class Car implements Serializable {
 	// toString method
 	@Override
 	public String toString() {
-		return "Car [carID=" + carID + ", model=" + model + ", topSpeed=" + topSpeed + "]";
+		return "Car [carID=" + carID + ", model=" + model + ", topSpeed=" + topSpeed + ", driverID="+ driverID +"]";
 	}
 	
 	

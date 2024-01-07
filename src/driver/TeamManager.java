@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,7 @@ public class TeamManager implements Serializable {
 	public TeamManager() {
 		super();
 		kb   = new Keyboard();
+		raceTeam = new HashMap<>();
 	}
 
 
@@ -89,6 +91,12 @@ public class TeamManager implements Serializable {
 			drivers = retrieveDrivers(connection);
 			raceCars = retrieveCars(connection, drivers);
 			System.out.println("Yeow");
+			
+			for(Car car : raceCars) {
+				if(!(car.getDriverID() == 0)){
+					raceTeam.put(car.getDriverID(), car);
+				}
+			}
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -132,13 +140,9 @@ public class TeamManager implements Serializable {
 			car.setCarID(rs.getInt("carID"));
 			car.setTopSpeed(rs.getInt("topSpeed"));
 			car.setModel(rs.getString("modelType"));
-			
-			for(Driver d : drivers) {
-				if(d.getDriverID() == car.getDriverID()) {
-					car.addDriver(d);
-				}
-			}
+			car.setDriverID(rs.getInt("driverID"));
 			cars.add(car);
+			
 		}
 		rs.close();
 		stmt.close();
@@ -146,26 +150,33 @@ public class TeamManager implements Serializable {
 		return cars;
 	}
 	
+	
+	// CRUD methods
+	
+	// method to read driver info
+	public String readDriverInfo(int driverID) {
+		
+		return null;
+	}
+	 
+	// method to register new driver to driver and add to driver database
+	public void registerNewDriver() {
+		
+	}
+	
+	
+	// method to update driver details
+	public void updateDriverInfo(int driverID) {
+		
+	}
+	
+	
+	// method to delete driver 
+	public void deleteDriver(int driverID) {
+		
+	}
+	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
