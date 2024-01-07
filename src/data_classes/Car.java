@@ -52,7 +52,7 @@ public class Car implements Serializable {
 	
 	//validation methods
 	private static void validateCarID(int value) {
-		if(value < 1 || value > 99) {
+		if(value < 1000 || value > 9999) {
 			throw new IllegalArgumentException("Thats illegal in carID class feen");
 		}
 	}
@@ -104,12 +104,12 @@ public class Car implements Serializable {
 
 	
 	// method to add driver to car
-	public void addDriver(int driverID) {
+	public void addDriver(Driver d) {
 		if(!(this.driverID == 0)) {
 			System.out.println("there is a driver already registered for this car");
 		}
 		else {
-			this.driverID = driverID;
+			this.driverID = d.getDriverID();
 		}		
 	}
 	
