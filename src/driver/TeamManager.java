@@ -211,9 +211,32 @@ public class TeamManager {
 		return driverInfo;	
 	}
 	 
+	
 	// method to register new driver to driver and add to driver database
 	public void registerNewDriver() {
 		
+		Driver driver = new Driver();
+		
+		String name = kb.readString("enter name: ", "Invalid name, please try again");
+		String experienceLevel = kb.readString("enter experience level: ", "Invalid entry, please try again;");
+		
+		driver.setName(name);
+		driver.setExperienceLevel(experienceLevel);
+		
+		try {
+			connection = connectDB();
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO driver (name, experienceLevel) VALUES(?, ?)");
+			ps.setString(1, name.toUpperCase());
+			ps.setString(2, experienceLevel.toUpperCase());
+			
+			ps.execute();
+			ps.close();
+			System.out.println("player: " + name + " is now registered!");
+			connection.close();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

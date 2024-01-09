@@ -19,6 +19,8 @@ public class Main {
 //		System.out.println(Manager.getRaceCars());
 //		System.out.println(Manager.getRaceTeam());
 		
+		Manager.registerNewDriver();
+		
 		try {
 			System.out.println(Manager.readDriverInfo(1000));
 		} catch (SQLException e) {
