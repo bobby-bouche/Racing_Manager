@@ -212,16 +212,17 @@ public class TeamManager {
 	}
 	 
 	
-	// method to register new driver to driver and add to driver database
+	// method to create new driver and add to driver database
 	public void registerNewDriver() {
 		
-		Driver driver = new Driver();
+		//Driver driver = new Driver();
 		
+		// create name, experienceLevel validation in keyboard class
 		String name = kb.readString("enter name: ", "Invalid name, please try again");
 		String experienceLevel = kb.readString("enter experience level: ", "Invalid entry, please try again;");
 		
-		driver.setName(name);
-		driver.setExperienceLevel(experienceLevel);
+//		driver.setName(name);
+//		driver.setExperienceLevel(experienceLevel);
 		
 		try {
 			connection = connectDB();
@@ -231,8 +232,9 @@ public class TeamManager {
 			
 			ps.execute();
 			ps.close();
-			System.out.println("player: " + name + " is now registered!");
 			connection.close();
+			
+			System.out.println("driver: " + name + " succesfully registered!");
 		}
 		catch(SQLException e) {
 			e.printStackTrace();

@@ -2,6 +2,8 @@ package inputValidation;
 
 import java.util.Scanner;
 
+import enums.ExperienceLevel;
+
 public class Keyboard {
 	
 	// keyboard fields
@@ -64,6 +66,67 @@ public class Keyboard {
 		}
 		return strInput;
 	}
+	
+	
+	/*
+	 * overloaded method to vallidate user input for string
+	 */
+	public String readString(String strInput) {
+		
+		boolean valid = false;
+		
+		while(valid == false) {
+			try {
+				if(!(strInput == null) && !strInput.isBlank()){
+					valid = true;
+				}
+				else {
+					System.out.println("Invalid String");
+				}
+			}
+			catch(IllegalArgumentException e) {
+				System.out.println("Illegal String input");
+			}
+		}
+		return strInput;
+	}
+	
+	
+	public String validateDriverExperienceLevel(String promptMsg,String errorMsg) {
+		
+		String inputLevel = null;
+		boolean valid = false;
+		
+		while(valid == false) {
+			System.out.println(promptMsg);
+			inputLevel = input.nextLine();
+			try {
+				readString(inputLevel);
+				if(!(inputLevel.equals(ExperienceLevel.ROOKIE)) && !(inputLevel.equals(ExperienceLevel.SEASONED_PRO)) && !(inputLevel.equals(ExperienceLevel.ESTABLISHED))) {
+					System.out.println("Invalid experiencelevel. please choice one of rookie/established/seasoned pro.");
+				}
+				else {
+					valid = true;
+				}
+			}
+			catch(IllegalArgumentException e) {
+				System.out.println(errorMsg);
+			}
+		}
+		return inputLevel;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

@@ -20,13 +20,15 @@ public class Main {
 //		System.out.println(Manager.getRaceTeam());
 		
 		Manager.registerNewDriver();
+		//System.out.println();
 		
-		try {
-			System.out.println(Manager.readDriverInfo(1000));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			
+//			//System.out.println(Manager.readDriverInfo(1001));
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		Driver d = new Driver(1001, "newman", "ROOKIE");
 //		
