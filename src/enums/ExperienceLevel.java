@@ -3,7 +3,7 @@ package enums;
 public enum ExperienceLevel {
 
 	ROOKIE ("rookie"),
-	ESTABLISHED ("established"),
+	ESTABLISHED ("ESTABLISHED"),
 	SEASONED_PRO ("seasoned pro");
 	
 	

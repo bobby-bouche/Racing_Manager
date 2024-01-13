@@ -20,12 +20,13 @@ public class TeamManager {
 	//teamManager fields
 	private static List<Driver> drivers;
 	private static List<Car> raceCars;
-	// this is a neat feature to implement that will store currant race team
+	// this is a neat feature to implement a Map that will store currant race team data
 	private static Map<Integer, Car> raceTeam;
 	
 	private Keyboard kb;
 	Connection connection;
 
+	
 	
 	//constructor
 	public TeamManager() {
@@ -35,6 +36,7 @@ public class TeamManager {
 	}
 
 
+	
 	// getters
 	public List<Driver> getDrivers() {
 		return drivers;
@@ -47,6 +49,7 @@ public class TeamManager {
 	public Map<Integer, Car> getRaceTeam() {
 		return raceTeam;
 	}
+	
 	
 	
 	//method to create database connection
@@ -65,24 +68,6 @@ public class TeamManager {
 		return con;
 	}
 	
-	
-	/*
-	 *  method to continuously refresh data lists every 5 seconds
-	 *  to ensure an updates to the data remains synced between
-	 *  database and running program data.
-	 */
-	public void CDCListener() {
-		
-		while(true) {
-			try {
-				retrieveData();
-				Thread.sleep(5000);
-			}
-			catch(InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 	
 	
 	// method to connect to the database, retrieve all data, and populate static lists
@@ -103,6 +88,27 @@ public class TeamManager {
 	}
 	
 	
+	
+	/*
+	 *  method to continuously refresh data lists every 5 seconds
+	 *  to ensure an updates to the data-set remains synced between both
+	 *  database and live program data.
+	 */
+	public void CDCListener() {
+		
+		while(true) {
+			try {
+				retrieveData();
+				Thread.sleep(5000);
+			}
+			catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
 	/*
 	 *  This method searches for raceCars currently being piloted by drivers and adds them
 	 *  to the current race team line-up.
@@ -116,6 +122,7 @@ public class TeamManager {
 		}
 		return TeamLineup;
 	}
+	
 	
 	
 	// method to retrieve driver data from database
@@ -215,15 +222,10 @@ public class TeamManager {
 	// method to create new driver and add to driver database
 	public void registerNewDriver() {
 		
-		//Driver driver = new Driver();
-		
 		// create name, experienceLevel validation in keyboard class
 		String name = kb.readString("enter name: ", "Invalid name, please try again");
 		String experienceLevel = kb.readString("enter experience level: ", "Invalid entry, please try again;");
-		
-//		driver.setName(name);
-//		driver.setExperienceLevel(experienceLevel);
-		
+				
 		try {
 			connection = connectDB();
 			PreparedStatement ps = connection.prepareStatement("INSERT INTO driver (name, experienceLevel) VALUES(?, ?)");
@@ -242,9 +244,43 @@ public class TeamManager {
 	}
 	
 	
+	//method to retrieve driver object from driver list
+	 Driver retrieveDriver(int driverID) {
+		
+		Driver driver = null;
+		
+		for(Driver d : drivers) {
+			if(d.getDriverID() == driverID) {
+				driver = d;
+			}
+		}
+		return driver;
+	}
+	
+	
 	// method to update driver details
 	public void updateDriverInfo(int driverID) {
 		
+		Driver driver = retrieveDriver(driverID);
+
+		try {
+			connection = connectDB();
+			PreparedStatement ps = connection.prepareStatement("UPDATE driver SET name = ?, experienceLevel= ? WHERE driverID = ?");
+			
+			ps.setString(1, driver.getName());
+			ps.setString(2, driver.getExperienceLevel().getLevel());
+			ps.setInt(3, driverID);
+			
+			ps.executeUpdate();
+			ps.close();
+			connection.close();
+			
+			System.out.println("Player data successfully updated!");
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	

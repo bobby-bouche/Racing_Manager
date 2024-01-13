@@ -19,7 +19,12 @@ public class Main {
 //		System.out.println(Manager.getRaceCars());
 //		System.out.println(Manager.getRaceTeam());
 		
-		Manager.registerNewDriver();
+		//Manager.registerNewDriver();
+		Driver driver;
+		driver = Manager.retrieveDriver(1000);
+		//driver.setName(driver.getName().toUpperCase());
+		driver.setExperienceLevel("rookie");
+		Manager.updateDriverInfo(1000);
 		//System.out.println();
 		
 //		try {
