@@ -25,7 +25,6 @@ public class TeamManager {
 	
 	private Keyboard kb;
 	Connection connection;
-
 	
 	
 	//constructor
@@ -60,7 +59,6 @@ public class TeamManager {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/racing_manager_db", "root", "Ronaldo");
-			System.out.println("success");
 		}
 		catch(ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -244,6 +242,10 @@ public class TeamManager {
 	
 	
 	//method to retrieve driver object from driver list
+	/*
+	 * this is just another way to search. the update method search using an object whereas
+	 * the delete method searchs with an integer
+	 */
 	 Driver retrieveDriverObject(int driverID) {
 		
 		Driver driver = null;
@@ -315,15 +317,5 @@ public class TeamManager {
 	}
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
