@@ -59,7 +59,7 @@ public class TeamManager {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/racing_manager_db", "root", "ronaldo");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/racing_manager_db", "root", "Ronaldo");
 			System.out.println("success");
 		}
 		catch(ClassNotFoundException | SQLException e) {
@@ -287,6 +287,31 @@ public class TeamManager {
 	// method to delete driver 
 	public void deleteDriver(int driverID) {
 		
+		boolean driverFound = false;
+		
+		for(Driver d : drivers) {
+			if(d.getDriverID() == driverID) {
+			
+				connection = connectDB();
+				try {
+					PreparedStatement ps = connection.prepareStatement("DELETE FROM driver WHERE driverID = ?");
+					ps.setInt(1, driverID);
+					ps.executeUpdate();
+					
+					ps.close();
+					connection.close();
+					System.out.println("Driver removed from database");
+					driverFound = true;
+					break;
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		if(!driverFound) {
+			System.out.println("no driver with id: " + driverID + " in database");
+		}
 	}
 	
 

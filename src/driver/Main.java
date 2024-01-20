@@ -20,10 +20,18 @@ public class Main {
 		
 		//Manager.registerNewDriver();
 		Driver driver;
-		driver = Manager.retrieveDriver(1000);
+		driver = Manager.retrieveDriverObject(1000);
+		System.out.println(driver.getName());
+		
+		//Manager.createNewDriver();
+		
+		Manager.deleteDriver(1003);
+		
+		
+		
 		//driver.setName(driver.getName().toUpperCase());
-		driver.setExperienceLevel("rookie");
-		Manager.updateDriverInfo(1000);
+		//driver.setExperienceLevel("rookie");
+		//Manager.updateDriverInfo(1000);
 		//System.out.println();
 		
 //		try {
