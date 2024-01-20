@@ -91,8 +91,8 @@ public class TeamManager {
 	
 	/*
 	 *  method to continuously refresh data lists every 5 seconds
-	 *  to ensure an updates to the data-set remains synced between both
-	 *  database and live program data.
+	 *  to ensure any live updates to the data-set remains synced between both
+	 *  database and program data.
 	 */
 	public void CDCListener() {
 		
@@ -173,6 +173,31 @@ public class TeamManager {
 	
 	
 	// CRUD methods
+	 
+	// method to create new driver and add to driver database
+	public void createNewDriver() {
+		
+		// create name, experienceLevel validation methods in keyboard class
+		String name = kb.readString("enter name: ", "Invalid name, please try again");
+		String experienceLevel = kb.readString("enter experience level: ", "Invalid entry, please try again;");
+				
+		try {
+			connection = connectDB();
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO driver (name, experienceLevel) VALUES(?, ?)");
+			ps.setString(1, name.toUpperCase());
+			ps.setString(2, experienceLevel.toUpperCase());
+			
+			ps.execute();
+			ps.close();
+			connection.close();
+			
+			System.out.println("driver: " + name + " succesfully registered!");
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	// method to read driver info
 	public String readDriverInfo(int driverID) throws SQLException {
@@ -214,38 +239,12 @@ public class TeamManager {
 				connection.close();
 			}
 		}
-		
 		return driverInfo;	
-	}
-	 
-	
-	// method to create new driver and add to driver database
-	public void registerNewDriver() {
-		
-		// create name, experienceLevel validation in keyboard class
-		String name = kb.readString("enter name: ", "Invalid name, please try again");
-		String experienceLevel = kb.readString("enter experience level: ", "Invalid entry, please try again;");
-				
-		try {
-			connection = connectDB();
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO driver (name, experienceLevel) VALUES(?, ?)");
-			ps.setString(1, name.toUpperCase());
-			ps.setString(2, experienceLevel.toUpperCase());
-			
-			ps.execute();
-			ps.close();
-			connection.close();
-			
-			System.out.println("driver: " + name + " succesfully registered!");
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	
 	//method to retrieve driver object from driver list
-	 Driver retrieveDriver(int driverID) {
+	 Driver retrieveDriverObject(int driverID) {
 		
 		Driver driver = null;
 		
@@ -261,7 +260,8 @@ public class TeamManager {
 	// method to update driver details
 	public void updateDriverInfo(int driverID) {
 		
-		Driver driver = retrieveDriver(driverID);
+		// would rather have this method connect directly to database than calling retrieveDriverObject ??
+		Driver driver = retrieveDriverObject(driverID);
 
 		try {
 			connection = connectDB();

@@ -1,15 +1,14 @@
 package driver;
 
-import java.sql.SQLException;
-
-import data_classes.Car;
 import data_classes.Driver;
 
 public class Main {
 
 	public static void main(String[] args) {
-	
-	
+
+
+		// shoddy test site //
+		
 		TeamManager Manager = new TeamManager();
 		//test
 		//man.connectDB();
