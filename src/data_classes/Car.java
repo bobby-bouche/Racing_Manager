@@ -108,12 +108,12 @@ public class Car implements Serializable {
 
 	
 	// method to add driver to car
-	public void addDriver(Driver d) {
+	public void addDriver(int driverID) {
 		if(!(this.driverID == 0)) {
 			System.out.println("there is a driver already registered for this car");
 		}
 		else {
-			this.driverID = d.getDriverID();
+			this.driverID = driverID;
 		}		
 	}
 	

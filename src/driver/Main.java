@@ -48,9 +48,7 @@ public class Main {
 					break;
 					
 				case 2:
-					for(Car c : dbManager.getRaceCars()) {
-						System.out.println(c + "\n");
-					}
+					runRaceCarMenu();
 					break;
 					
 				case 3:
@@ -162,16 +160,30 @@ public class Main {
 			System.out.println("--------Racing Menu--------\n"
 					+ "1. Register driver to car\n"
 					+ "2. Remove driver from car\n"
-					+ "3. View Racing line-up"
-					+ "4. Back");
+					+ "3. View Racing line-up\n"
+					+ "\n");
 			
 			choice = kb.readInteger(driverPrompTMsg, driverErrorMSg, 1, 4);
 			
 			switch(choice) {
 			
 			case 1:
+				System.out.println("munya");
 				
 			case 2:
+				String carIdPromptMsg = "enter car id:\n";
+				String carIdErrorMsg  = "Invalid car id";
+				
+				int carId = kb.readInteger(carIdPromptMsg, carIdErrorMsg);
+				for(Car car : dbManager.getRaceCars()) {
+					if(car.getCarID() == carId) {
+						car.removeDriver();
+					}
+					else {
+						System.out.println("No car with driver with id: " + carId);
+					}
+				}
+				break;
 				
 			case 3:
 				System.out.println(dbManager.getRaceTeam());
@@ -187,6 +199,8 @@ public class Main {
 			}
 		}
 	}
+	
+	
 	
 	
 	public static void main(String[] args) {
