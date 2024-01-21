@@ -149,6 +149,45 @@ public class Main {
 		
 	}
 	
+	void runRaceCarMenu() {
+		
+		int choice;
+		boolean proceed = true;
+		
+		String driverPrompTMsg = "Make a selection:\n";
+		String driverErrorMSg  = "Invalid selection, enter an integer in range(1-4)\n";
+		
+		while(proceed) {
+			
+			System.out.println("--------Racing Menu--------\n"
+					+ "1. Register driver to car\n"
+					+ "2. Remove driver from car\n"
+					+ "3. View Racing line-up"
+					+ "4. Back");
+			
+			choice = kb.readInteger(driverPrompTMsg, driverErrorMSg, 1, 4);
+			
+			switch(choice) {
+			
+			case 1:
+				
+			case 2:
+				
+			case 3:
+				System.out.println(dbManager.getRaceTeam());
+				break;
+				
+			case 4:
+				proceed = false;
+				System.out.println("Returning to previous menu..");
+				break;
+				
+			default:
+				System.out.println("invalid entry");
+			}
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		
