@@ -21,7 +21,7 @@ public class Main {
 	}
 	
 	
-	public void launchProgram() throws SQLException {
+	public void runProgram() throws SQLException {
 		
 		int choice;
 		boolean proceed = true;
@@ -214,7 +214,7 @@ public class Main {
 			Thread listenerThread = new Thread(() -> dbManager.CDCListener());
 			listenerThread.start();
 			
-			driver.launchProgram();
+			driver.runProgram();
 		}
 		catch(IllegalArgumentException | SQLException e) {
 			System.out.println(e);	
