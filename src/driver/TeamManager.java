@@ -270,14 +270,14 @@ public class TeamManager {
 			PreparedStatement ps = connection.prepareStatement("UPDATE driver SET name = ?, experienceLevel= ? WHERE driverID = ?");
 			
 			ps.setString(1, driver.getName());
-			ps.setString(2, driver.getExperienceLevel().getLevel());
+			ps.setString(2, driver.getExperienceLevel().getLevel().toUpperCase());
 			ps.setInt(3, driver.getDriverID());
 			
 			ps.executeUpdate();
 			ps.close();
 			connection.close();
 			
-			System.out.println("Player data successfully updated!");
+			System.out.println("Player data successfully updated..\n");
 			
 		}
 		catch(SQLException e) {
@@ -302,7 +302,7 @@ public class TeamManager {
 					
 					ps.close();
 					connection.close();
-					System.out.println("Driver removed from database");
+					System.out.println("Driver removed from database..\n");
 					driverFound = true;
 					break;
 				} catch (SQLException e) {
@@ -312,7 +312,7 @@ public class TeamManager {
 		}
 		
 		if(!driverFound) {
-			System.out.println("no driver with id: " + driverID + " in database");
+			System.out.println("no driver with id: " + driverID + " in database..\n");
 		}
 	}
 	

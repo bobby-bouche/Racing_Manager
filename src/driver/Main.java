@@ -130,7 +130,7 @@ public class Main {
 						String updateExperienceLevelPromptMsg = "enter new experience level:\n";
 						String updateExperienceLevelErrorMsg = "Invalid experience level. enter one of (rookie, established, seasoned pro";
 						newExperienceLevel = kb.readString(updateExperienceLevelPromptMsg, updateExperienceLevelErrorMsg);
-						d.setExperienceLevel(newExperienceLevel);
+						d.setExperienceLevel(newExperienceLevel.toUpperCase());
 						dbManager.updateDriverInfo(d);
 						System.out.println("Driver information updated..\n");
 						break;

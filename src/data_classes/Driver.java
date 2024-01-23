@@ -76,7 +76,7 @@ public class Driver implements Serializable{
 
 	public void setExperienceLevel(String experienceLevel) {
 		validateExperienceLevel(experienceLevel);
-		this.experienceLevel = ExperienceLevel.fromString(experienceLevel);
+		this.experienceLevel = ExperienceLevel.fromString(experienceLevel.toUpperCase());
 	}
 	
 
