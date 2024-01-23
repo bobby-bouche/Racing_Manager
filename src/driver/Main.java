@@ -27,7 +27,7 @@ public class Main {
 		boolean proceed = true;
 		
 		String promptMsg = "Make a selection:\n";
-		String errorMsg = "Invalid entry, enter and integer value in the range ()\n";
+		String errorMsg  = "Invalid entry, enter and integer value in the range ()\n";
 		
 		while(proceed) {
 			
@@ -117,14 +117,27 @@ public class Main {
 				break;
 				
 			case 4:
-				int inputUpdate;
-				String updatePromptMsg = "enter driverID: \n";
-				String updateErrorMsg  = "Invlaid id";
+				int driverID;
+				String newExperienceLevel;
 				
-				inputUpdate = kb.readInteger(updatePromptMsg, updateErrorMsg);
-				dbManager.updateDriverInfo(inputUpdate);
+				String driverIDPromptMsg = "enter driverID: \n";
+				String driverIDErrorMsg  = "Invalid id";
+				driverID = kb.readInteger(driverIDPromptMsg, driverIDErrorMsg);
+				
+				for(Driver d : dbManager.getDrivers()) {
+					if(d.getDriverID() == driverID) {
+						
+						String updateExperienceLevelPromptMsg = "enter new experience level:\n";
+						String updateExperienceLevelErrorMsg = "Invalid experience level. enter one of (rookie, established, seasoned pro";
+						newExperienceLevel = kb.readString(updateExperienceLevelPromptMsg, updateExperienceLevelErrorMsg);
+						d.setExperienceLevel(newExperienceLevel);
+						dbManager.updateDriverInfo(d);
+						System.out.println("Driver information updated..\n");
+						break;
+					}
+				}
 				break;
-				
+	
 			case 5:
 				int inputDelete;
 				String deletePromptMsg = "enter driverID: \n";

@@ -260,10 +260,10 @@ public class TeamManager {
 	
 	
 	// method to update driver details
-	public void updateDriverInfo(int driverID) {
+	public void updateDriverInfo(Driver driver) {
 		
 		// would rather have this method connect directly to database than calling retrieveDriverObject ??
-		Driver driver = retrieveDriverObject(driverID);
+		
 
 		try {
 			connection = connectDB();
@@ -271,7 +271,7 @@ public class TeamManager {
 			
 			ps.setString(1, driver.getName());
 			ps.setString(2, driver.getExperienceLevel().getLevel());
-			ps.setInt(3, driverID);
+			ps.setInt(3, driver.getDriverID());
 			
 			ps.executeUpdate();
 			ps.close();
