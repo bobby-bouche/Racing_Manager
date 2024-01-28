@@ -1,9 +1,6 @@
 package driver;
 
-
-
 import java.sql.SQLException;
-import java.util.List;
 
 import data_classes.Car;
 import data_classes.Driver;
