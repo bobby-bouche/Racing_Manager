@@ -18,18 +18,13 @@ public class Car implements Serializable {
 	
 	
 	// symbolic constants
-	private static int DEFAULT_DRIVER_ID = 0;
+	private static final int DEFAULT_DRIVER_ID = 0;
 	
-	
-	// initializer
-	{
-		driverID = DEFAULT_DRIVER_ID;
-	}
-	
-	
+		
 	// constructors
 	public Car() {
 		super();
+		this.driverID = DEFAULT_DRIVER_ID;
 	}
 	
 	public Car(int carID, int topSpeed, String model) {
@@ -109,11 +104,11 @@ public class Car implements Serializable {
 	
 	// method to add driver to car
 	public void addDriver(int driverID) {
-		if(!(this.driverID == 0)) {
+		if(this.driverID != 0) {
 			System.out.println("there is a driver already registered for this car");
 		}
 		else {
-			this.driverID = driverID;
+			this.driverID = driverID; // set the new driver ID
 		}		
 	}
 	
@@ -123,7 +118,7 @@ public class Car implements Serializable {
 			System.out.println("car has no registered driver");
 		}
 		else {
-			this.driverID = 0;
+			this.driverID = DEFAULT_DRIVER_ID;
 			System.out.println("car is available for use");
 		}
 	}
