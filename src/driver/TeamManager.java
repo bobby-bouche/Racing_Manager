@@ -17,6 +17,9 @@ import inputValidation.Keyboard;
 
 public class TeamManager {
 	
+	// Singleton instance variable
+	private static TeamManager instance;
+	
 	//teamManager fields
 	private static List<Driver> drivers;
 	private static List<Car> raceCars;
@@ -28,10 +31,18 @@ public class TeamManager {
 	
 	
 	//constructor
-	public TeamManager() {
+	private TeamManager() {
 		super();
 		kb   = new Keyboard();
 		raceTeam = new HashMap<>();
+	}
+	
+	//Singleton method to ensure only one instance of TeamManager is created.
+	public static TeamManager getInstance() {
+		if(instance == null) {
+			instance = new TeamManager();
+		}
+		return instance;
 	}
 
 
