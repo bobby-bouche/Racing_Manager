@@ -20,20 +20,29 @@ public class TeamManager {
 	//teamManager fields
 	private static List<Driver> drivers;
 	private static List<Car> raceCars;
-	// this is a neat feature to implement a Map that will store currant race team data
 	private static Map<Integer, Car> raceTeam;
 	
 	private Keyboard kb;
 	Connection connection;
 	
+	// Singleton instance variable
+	private static TeamManager instance;
+	
 	
 	//constructor
-	public TeamManager() {
+	private TeamManager() {
 		super();
 		kb   = new Keyboard();
 		raceTeam = new HashMap<>();
 	}
-
+	
+	//Singleton method to ensure only one instance of TeamManager is created.
+	public static TeamManager getInstance() {
+		if(instance == null) {
+			instance = new TeamManager();
+		}
+		return instance;
+	}
 
 	
 	// getters
@@ -48,7 +57,6 @@ public class TeamManager {
 	public Map<Integer, Car> getRaceTeam() {
 		return raceTeam;
 	}
-	
 	
 	
 	//method to create database connection
@@ -67,7 +75,6 @@ public class TeamManager {
 	}
 	
 	
-	
 	// method to connect to the database, retrieve all data, and populate static lists
 	void retrieveData() {
 		try {
@@ -84,7 +91,6 @@ public class TeamManager {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	
 	/*
@@ -106,7 +112,6 @@ public class TeamManager {
 	}
 	
 	
-	
 	/*
 	 *  This method searches for raceCars currently being piloted by drivers and adds them
 	 *  to the current race team line-up.
@@ -114,13 +119,12 @@ public class TeamManager {
 	private static Map<Integer, Car> populateCurrentRaceTeam(Map<Integer, Car> TeamLineup){
 		
 		for(Car car : raceCars) {
-			if(!(car.getDriverID() == 0)){
+			if(car.getDriverID() != 0){
 				TeamLineup.put(car.getDriverID(), car);
 			}
 		}
 		return TeamLineup;
 	}
-	
 	
 	
 	// method to retrieve driver data from database
@@ -243,7 +247,7 @@ public class TeamManager {
 	
 	//method to retrieve driver object from driver list
 	/*
-	 * this is just another way to search. the update method search using an object whereas
+	 * this is just another way to search. the update method search usies an object whereas
 	 * the delete method searchs with an integer
 	 */
 	 Driver retrieveDriverObject(int driverID) {

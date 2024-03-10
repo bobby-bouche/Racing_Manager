@@ -1,9 +1,6 @@
 package driver;
 
-
-
 import java.sql.SQLException;
-import java.util.List;
 
 import data_classes.Car;
 import data_classes.Driver;
@@ -11,16 +8,19 @@ import inputValidation.Keyboard;
 
 public class Main {
 	
+	// Main fields
 	private static TeamManager dbManager;
 	private static Keyboard kb;
 	
 	
+	// constructor
 	public Main() {
-		dbManager = new TeamManager();
+		dbManager = TeamManager.getInstance();
 		kb 		  = new Keyboard();
 	}
 	
 	
+	// method to launch progrom
 	public void runProgram() throws SQLException {
 		
 		int choice;
@@ -67,17 +67,16 @@ public class Main {
 				default:
 					System.out.println("Invalid entry");
 			
-			}
-			
+			}	
 		}
 	}
 	
 	
+	// method to launch Driver menu
 	void runDriverMenu() throws SQLException {
 		
 		int choice;
 		boolean proceed = true;
-		
 		
 		String promptMsg = "Make a selection:\n";
 		String errorMsg = "Invalid selection, enter an integer in the range (1-6)";
@@ -119,11 +118,10 @@ public class Main {
 			case 4:
 				int driverID;
 				String newExperienceLevel;
-				
 				String driverIDPromptMsg = "enter driverID: \n";
 				String driverIDErrorMsg  = "Invalid id";
-				driverID = kb.readInteger(driverIDPromptMsg, driverIDErrorMsg);
 				
+				driverID = kb.readInteger(driverIDPromptMsg, driverIDErrorMsg);
 				for(Driver d : dbManager.getDrivers()) {
 					if(d.getDriverID() == driverID) {
 						
@@ -157,9 +155,10 @@ public class Main {
 				
 			}
 		}
-		
 	}
 	
+	
+	// method to launch raceCar menu
 	void runRaceCarMenu() {
 		
 		int choice;
@@ -174,7 +173,7 @@ public class Main {
 					+ "1. Register driver to car\n"
 					+ "2. Remove driver from car\n"
 					+ "3. View Racing line-up\n"
-					+ "\n");
+					+ "4. Back\n");
 			
 			choice = kb.readInteger(driverPrompTMsg, driverErrorMSg, 1, 4);
 			
@@ -182,6 +181,7 @@ public class Main {
 			
 			case 1:
 				System.out.println("munya");
+				break;
 				
 			case 2:
 				String carIdPromptMsg = "enter car id:\n";
@@ -214,8 +214,7 @@ public class Main {
 	}
 	
 	
-	
-	
+	//Main method
 	public static void main(String[] args) {
 		
 		Main driver = new Main();
@@ -232,9 +231,7 @@ public class Main {
 		catch(IllegalArgumentException | SQLException e) {
 			System.out.println(e);	
 		}
-
-
-	
 	}
+	
 
 }
